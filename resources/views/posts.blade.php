@@ -9,7 +9,7 @@
                     <div class='product__wrapper'>
                         <div class="product__item">
                             <div class='product__img'>
-                                <img src="{{$one->Img}}">
+                                <img src="{{asset($one->Img)}}">
                             </div>
                             <div class='product__tools'>
                                 <div class='product__headline'>
@@ -46,30 +46,9 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class='filter__wrapper'>
+
                     <div class='fiter__menu'>
-                        <div class='filter__text'></div>
-                        <div class='filter'>
-                            <ul class='filter__items'>
-                                <li><a href='#'>SMART PHONE</a></li>
-                                <li><a href='#'>DESKTOP</a></li>
-                                <li><a href='#'>LAPTOP</a></li>
-                                <li><a href='#'>ACCESSORIES</a></li>
-                                <li><a href='#'>NETWORKING</a></li>
-                                <li><a href='#'>SOFTWARE</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class='fiter__menu'>
-                        <div class='filter__text'></div>
-                        <div class='filter'>
-                            <ul class='filter__items'>
-                                <li><a href='#'>$1000 - $2000</a></li>
-                                <li><a href='#'>$2000 - $3000</a></li>
-                                <li><a href='#'>$3000 - $4000</a></li>
-                                <li><a href='#'>$4000 - $5000</a></li>
-                                <li><a href='#'>$5000 - $6000</a></li>
-                            </ul>
-                        </div>
+                    @include($vi)
                     </div>
                     <div class='fiter__menu'>
                         <div class='filter__text'></div>
@@ -85,7 +64,9 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="pagination">
+                    {!! $objs->links() !!}
+                </div>
             </div>
         </div>
     </div>

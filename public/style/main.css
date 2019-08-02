@@ -303,7 +303,7 @@ a:hover{
     justify-content: end;
 }
 .product__headline{
-    width: 270px;
+    width: 80%;
     height: 32px;
     background: #ffffff;
     border: solid 2px #efefef;

@@ -8,7 +8,8 @@ use App\Product;
 class PostController extends Controller
 {
     public function getPosts(){
-        $objs = Product::orderBy('id', 'DESC')->paginate(2);
-        return view('posts', compact('objs'));
+        $objs = Product::orderBy('id', 'DESC')->paginate(12);
+            $vi = 'includes.default';
+        return view('posts', compact('objs', 'vi'));
     }
 }

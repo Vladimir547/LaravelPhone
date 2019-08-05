@@ -13,14 +13,14 @@ class CatalogController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getIndex($id = null){
-    $cat = Category::find($id);
-    $objs = Product::where('category_id', $cat->id)->paginate(12);
-        if (view()->exists('includes.' . $cat->id))
+    $objs = Product::where('category_id', $id)->paginate(12);
+        if (view()->exists('includes.' . $id))
         {
-            $vi = 'includes.'.$cat->id;
+            $vi = 'includes.'.$id;
         }else{
-            $vi = '/posts';
+            $vi = 'includes.default';
         }
-    return view('posts', compact('cat', 'objs', 'vi'));
+
+    return view('posts', compact( 'objs', 'vi'));
     }
 }

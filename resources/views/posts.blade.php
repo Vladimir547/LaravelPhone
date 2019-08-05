@@ -47,22 +47,7 @@
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class='filter__wrapper'>
 
-                    <div class='fiter__menu'>
                     @include($vi)
-                    </div>
-                    <div class='fiter__menu'>
-                        <div class='filter__text'></div>
-                        <div class='filter'>
-                            <ul class='filter__items'>
-                                <li><label for="hp">HP  </label><input type="checkbox" name="hp" id='hp' value=''></li>
-                                <li><label for="dell">DELL  </label><input type="checkbox" name="dell" id='hp' value=''></li>
-                                <li><label for="apple">APPLE  </label><input type="checkbox" name="apple" id='hp' value=''></li>
-                                <li><label for="asus">ASUS  </label><input type="checkbox" name="asus" id='hp' value=''></li>
-                                <li><label for="sumsumg">SUMSUMG  </label><input type="checkbox" name="sumsumg" id='hp' value=''></li>
-                                <li><label for="toshiba">TOSHIBA  </label><input type="checkbox" name="toshiba" id='hp' value=''></li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
                 <div class="pagination">
                     {!! $objs->links() !!}

@@ -4,12 +4,12 @@
         <div class="container">
             <div class="row">
                 <table>
-                 <tr>
-                    <th>name</th>
-                    <th>picture</th>
-                    <th>price</th>
-                    <th>count</th>
-                    <th>summa</th>
+                 <tr class="order_border">
+                    <th class="order_border">name</th>
+                    <th class="order_border">picture</th>
+                    <th class="order_border">price</th>
+                    <th class="order_border">count</th>
+                    <th class="order_border">summa</th>
                 </tr>
                  @php
                     $itog = 0;
@@ -19,17 +19,17 @@
                         $summa = $value->price * $cook_count[$value->id];
                         $itog +=$summa;
                     @endphp
-                    <tr>
-                        <td>{{$value->name}}</td>
-                        <td><img src="{{asset($value->img)}}" width="30%"></td>
-                        <td>{{$value->price}}</td>
-                        <td>{{$cook_count[$value->id]}}</td>
-                        <td>{{$summa}}</td>
+                    <tr class="order_border">
+                        <td class="order_border">{{$value->name}}</td>
+                        <td class="order_border"><img src="{{asset($value->img)}}" width="30%"></td>
+                        <td class="order_border">{{$value->price}}</td>
+                        <td class="order_border">{{$cook_count[$value->id]}}</td>
+                        <td class="order_border">{{$summa}}</td>
                     </tr>
                 @endforeach
                     <tr>
-                        <td colspan="4">Итого:</td>
-                         <td>{{$itog}}</td>
+                        <td class="order_border" colspan="4">Итого:</td>
+                         <td class="order_border">{{$itog}}</td>
                     </tr>
                 </table>
 

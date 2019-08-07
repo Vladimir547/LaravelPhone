@@ -2,12 +2,6 @@
     display: flex;
     flex-direction: column;
 }
-tr{
-    border: solid black 1px;
-}
-th{
-    border: solid black 1px;
-}
-td{
+.order_border{
     border: solid black 1px;
 }

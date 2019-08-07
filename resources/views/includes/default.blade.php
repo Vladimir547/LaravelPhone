@@ -11,12 +11,12 @@
             <div class='filter__text'></div>
             <div class='filter'>
                 <ul class='filter__items'>
-                    <li><label for="hp">HP  </label><input type="checkbox" name="hp" id='hp' value=''></li>
-                    <li><label for="dell">DELL  </label><input type="checkbox" name="dell" id='hp' value=''></li>
-                    <li><label for="apple">APPLE  </label><input type="checkbox" name="apple" id='hp' value=''></li>
-                    <li><label for="asus">ASUS  </label><input type="checkbox" name="asus" id='hp' value=''></li>
-                    <li><label for="sumsumg">SUMSUMG  </label><input type="checkbox" name="sumsumg" id='hp' value=''></li>
-                    <li><label for="toshiba">TOSHIBA  </label><input type="checkbox" name="toshiba" id='hp' value=''></li>
+                    <li><input type="checkbox" name="hp" id='hp' value=''><label for="hp">HP  </label></li>
+                    <li><input type="checkbox" name="dell" id='hp' value=''><label for="dell">DELL  </label></li>
+                    <li><input type="checkbox" name="apple" id='hp' value=''><label for="apple">APPLE  </label></li>
+                    <li><input type="checkbox" name="asus" id='hp' value=''><label for="asus">ASUS  </label></li>
+                    <li><input type="checkbox" name="sumsumg" id='hp' value=''><label for="sumsumg">SUMSUMG  </label></li>
+                    <li><input type="checkbox" name="toshiba" id='hp' value=''><label for="toshiba">TOSHIBA  </label></li>
                 </ul>
             </div>
             <div class="btn_filter">

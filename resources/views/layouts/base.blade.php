@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css"
           integrity="2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('style/main.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('style/basket.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('style/filter.css')}}" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -90,6 +91,25 @@
                             <div class='buy__items'>
                                 <a href="#"><i class="fas fa-shopping-cart"></i></a>
                             </div>
+                        </div>
+                        <div id="basket">
+                            <table id="bascets">
+                                <tbody>
+                                <tr style="display: none;" class="hPb">
+                                    <td>Выбрано:</td>
+                                    <td><span id="totalGoods">0</span> товаров</td>
+                                    <td>Сумма: $&asymp; </td>
+                                    <td><span id="totalPrice">0</span> руб.</td>
+                                </tr>
+                                <tr style="display: table-row;" class="hPe">
+                                    <td colspan="2">Корзина пуста</td>
+                                </tr>
+                                <tr>
+                                    <td><a style="display: none;" id="clearBasket" href="#">Очистить</a></td>
+                                    <td><a style="display: none;" id="checkOut" href="{{asset('basket')}}">Оформить</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -261,6 +281,9 @@
     }
 
 </script>
+<script src="{{asset('js/jquery.js')}}"></script>
+<script src="{{asset('js/jquery.cookie.js')}}"></script>
+<script src="{{asset('js/cart.js')}}"></script>
 @section('scripts')
 @show
 </body>

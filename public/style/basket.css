@@ -1,0 +1,13 @@
+.form__send{
+    display: flex;
+    flex-direction: column;
+}
+tr{
+    border: solid black 1px;
+}
+th{
+    border: solid black 1px;
+}
+td{
+    border: solid black 1px;
+}

@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
             <div class="headline">
-                <img src="{{asset('public/img/headline.png')}}">
+                <img src="{{asset('img/headline.png')}}">
                 <h1>born for sooting</h1>
             </div>
         </div>

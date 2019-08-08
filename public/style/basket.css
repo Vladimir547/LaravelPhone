@@ -1,0 +1,7 @@
+.form__send{
+    display: flex;
+    flex-direction: column;
+}
+.order_border{
+    border: solid black 1px;
+}

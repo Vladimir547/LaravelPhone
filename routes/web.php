@@ -17,4 +17,8 @@ Auth::routes();
 
 Route::get('/posts', 'PostController@getPosts');
 
+Route::get('/basket', 'BasketController@getIndex');
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('posts/{id}', 'CatalogController@getIndex');

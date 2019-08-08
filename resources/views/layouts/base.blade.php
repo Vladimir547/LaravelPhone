@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css"
           integrity="2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('public/style/main.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('style/main.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('style/basket.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('style/filter.css')}}" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width">
@@ -72,13 +74,13 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <div class="logo">
-                        <a href="#"><img src="{{asset('public/img/logo1.png')}}"></a>
+                        <a href="#"><img src="{{asset('img/logo1.png')}}"></a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <div class="tools">
                         <div class='register__items'>
-                            <a href="#">log in</a>
+                            <a href="{{asset('login.php')}}">log in</a>
                             <p>or</p>
                             <a href="#">create account</a>
                         </div>
@@ -89,6 +91,25 @@
                             <div class='buy__items'>
                                 <a href="#"><i class="fas fa-shopping-cart"></i></a>
                             </div>
+                        </div>
+                        <div id="basket">
+                            <table id="bascets">
+                                <tbody>
+                                <tr style="display: none;" class="hPb">
+                                    <td>Выбрано:</td>
+                                    <td><span id="totalGoods">0</span> товаров</td>
+                                    <td>Сумма: $&asymp; </td>
+                                    <td><span id="totalPrice">0</span> руб.</td>
+                                </tr>
+                                <tr style="display: table-row;" class="hPe">
+                                    <td colspan="2">Корзина пуста</td>
+                                </tr>
+                                <tr>
+                                    <td><a style="display: none;" id="clearBasket" href="#">Очистить</a></td>
+                                    <td><a style="display: none;" id="checkOut" href="{{asset('basket')}}">Оформить</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -103,12 +124,15 @@
                         <div class='show__menu' id='show'><i class="fas fa-bars"></i></div>
                         <div class='hide__menu' id='hide'><span>&times;</span></div>
                         <ul class="menu__item">
-                            <li><a href="#">smart phone</a></li>
-                            <li><a href="#">dasktop</a></li>
-                            <li><a href="#">laptop</a></li>
-                            <li><a href="#">accessories</a></li>
-                            <li><a href="#">networking</a></li>
-                            <li><a href="#">software</a></li>
+                            <li><a href="{{asset('/posts/')}}">Catalog</a></li>
+                            @foreach($cat_objs as $obj)
+                            @if($obj)
+                                <li><a href="{{asset('/posts/'.$obj->id)}}">{{$obj->name}}</a></li>
+                                @else
+                                <p>problem</p>
+                                @endif
+                            @endforeach
+
                         </ul>
                     </div>
                 </div>
@@ -194,10 +218,10 @@
                             <a href="#">we accept</a>
                         </div>
                         <div class='card__seti__img'>
-                            <a href="#"><img src="{{asset('public/img/mastercard.png')}}"></a>
-                            <a href="#"><img src="{{asset('public/img/visa.png')}}"></a>
-                            <a href="#"><img src="{{asset('public/img/cirrus.png')}}"></a>
-                            <a href="#"><img src="{{asset('public/img/express.png')}}"></a>
+                            <a href="#"><img src="{{asset('img/mastercard.png')}}"></a>
+                            <a href="#"><img src="{{asset('img/visa.png')}}"></a>
+                            <a href="#"><img src="{{asset('img/cirrus.png')}}"></a>
+                            <a href="#"><img src="{{asset('img/express.png')}}"></a>
                         </div>
                     </div>
                 </div>
@@ -207,11 +231,11 @@
                             <a href=" #">fallow us</a>
                         </div>
                         <div class='card__seti__img'>
-                            <a href="#"><img src="{{asset('public/img/facebook.png')}}"></a>
-                            <a href="#"><img src="{{asset('public/img/g+.png')}}"></a>
-                            <a href="#"><img src="{{asset('public/img/twit.png')}}"></a>
-                            <a href="#"><img src="{{asset('public/img/be.png')}}"></a>
-                            <a href="#"><img src="{{asset('public/img/freepick.png')}}"></a>
+                            <a href="#"><img src="{{asset('img/facebook.png')}}"></a>
+                            <a href="#"><img src="{{asset('img/g+.png')}}"></a>
+                            <a href="#"><img src="{{asset('img/twit.png')}}"></a>
+                            <a href="#"><img src="{{asset('img/be.png')}}"></a>
+                            <a href="#"><img src="{{asset('img/freepick.png')}}"></a>
                         </div>
                     </div>
                 </div>
@@ -257,6 +281,9 @@
     }
 
 </script>
+<script src="{{asset('js/jquery.js')}}"></script>
+<script src="{{asset('js/jquery.cookie.js')}}"></script>
+<script src="{{asset('js/cart.js')}}"></script>
 @section('scripts')
 @show
 </body>

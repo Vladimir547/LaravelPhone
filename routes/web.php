@@ -15,6 +15,8 @@ Route::get('/', 'BaseController@getindex');
 
 Auth::routes();
 
+Route::get('basket/delete/{id}', 'BasketController@getDelete');
+
 Route::get('/posts', 'PostController@getPosts');
 
 Route::get('/basket', 'BasketController@getIndex');

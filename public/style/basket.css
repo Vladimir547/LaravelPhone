@@ -6,9 +6,22 @@
     justify-content: center;
 }
 .order_border{
-    border: solid #709b1d 1px;
+    border: solid #709b1d 3px;
     color:#709b1d;
 }
+.order_border a{
+    color: #709b1d;
+}
+.order_border a:hover{
+    padding: 10px 10px 10px 10px;
+    color: #ffffff;
+    background: #709b1d;
+    border-radius: 5px;
+}
+.count{
+    width:50px;
+}
+
 .send{
     margin-top: 80px;
 }
@@ -24,12 +37,17 @@
 .basket__form{
     width:50%;
     border-radius: 5px;
+    border: solid #709b1d 3px;
 }
 .sub__form{
     height: 40px;
     margin-top: 25px;
     width:15%;
+    border: solid #709b1d 3px;
     border-radius: 5px;
     background: #709b1d;
     color:#ffffff;
+}
+textarea{
+    resize: none;
 }

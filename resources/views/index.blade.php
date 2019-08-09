@@ -81,14 +81,14 @@
                 <div class='product__wrapper'>
                     <div class="product__item">
                         <div class='product__img'>
-                            <img src="{{$one->Img}}">
+                            <img src="{{$one->img}}">
                         </div>
                         <div class='product__tools'>
                             <div class='product__headline'>
-                                <h4>{{$one->Name}}</h4>
+                                <h4>{{$one->name}}</h4>
                             </div>
                             <div class='product__price'>
-                                <p>{!!$one->Price!!}</p>
+                                <p>{!!$one->price!!}</p>
                             </div>
                             <div class='product__stars'>
                                 <i class="far fa-star"></i>
@@ -197,14 +197,14 @@
                     <div class='product__wrapper'>
                         <div class="product__item">
                             <div class='product__img'>
-                                <img src="{{$one->Img}}">
+                                <img src="{{$one->img}}">
                             </div>
                             <div class='product__tools'>
                                 <div class='product__headline'>
-                                    <h4>{{$one->Name}}</h4>
+                                    <h4>{{$one->name}}</h4>
                                 </div>
                                 <div class='product__price'>
-                                    <p>{!!$one->Price!!}</p>
+                                    <p>{!!$one->price!!}</p>
                                 </div>
                                 <div class='product__stars'>
                                     <i class="far fa-star"></i>
@@ -247,14 +247,14 @@
                     <div class='product__wrapper'>
                         <div class="product__item">
                             <div class='product__img'>
-                                <img src="{{$one->Img}}">
+                                <img src="{{$one->img}}">
                             </div>
                             <div class='product__tools'>
                                 <div class='product__headline'>
-                                    <h4>{{$one->Name}}</h4>
+                                    <h4>{{$one->name}}</h4>
                                 </div>
                                 <div class='product__price'>
-                                    <p>{!!$one->Price!!}</p>
+                                    <p>{!!$one->price!!}</p>
                                 </div>
                                 <div class='product__stars'>
                                     <i class="far fa-star"></i>

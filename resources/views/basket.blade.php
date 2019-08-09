@@ -1,4 +1,9 @@
+
 @extends('layouts.base')
+@section('scripts')
+@parent
+    <script src="{{asset('js/order.js')}}"></script>
+@endsection
 @section('content')
 <section class='order'>
     <div class="container">
@@ -10,6 +15,7 @@
                         <th class="order_border">picture</th>
                         <th class="order_border">price</th>
                         <th class="order_border">count</th>
+                        <th class="order_border">action</th>
                         <th class="order_border">summa</th>
                     </tr>
                     @php
@@ -23,14 +29,15 @@
                     <tr class="order_border">
                         <td class="order_border">{{$value->name}}</td>
                         <td class="order_border"><img src="{{asset($value->img)}}" width="30%"></td>
-                        <td class="order_border">{{$value->price}}</td>
-                        <td class="order_border">{{$cook_count[$value->id]}}</td>
-                        <td class="order_border">{{$summa}}</td>
+                        <td class="order_border"><span id="price_{{$value->id}}">{{$value->price}}</span></td>
+                        <td class="order_border"><input type="number" name="count" class="count" id="count"  min=1 max=100 data-id="{{$value->id}}" value="{{$cook_count[$value->id]}}"></td>
+                        <td class="order_border"><a href="{{asset('basket/delete/'.$value->id)}}" id="delete">Delete</a></td>
+                        <td class="order_border"><span id="summa_{{$value->id}}" class="summa">{{$summa}}</span></td>
                     </tr>
                     @endforeach
                     <tr>
-                        <td class="order_border" colspan="4">Итого:</td>
-                        <td class="order_border">{{$itog}}</td>
+                        <td class="order_border" colspan="5">Итого:</td>
+                        <td class="order_border"><span id="itog" class="itog">{{$itog}}</span></td>
                     </tr>
                 </table>
             </div>

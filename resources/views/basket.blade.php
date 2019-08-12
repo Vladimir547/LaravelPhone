@@ -47,16 +47,25 @@
 <section class="send">
     <div class="container">
         <div class="row">
-            <form action="#" method="POST" class="form__send" >
+            <form action="{{asset('order')}}" method="POST" class="form__send" >
                 {!! csrf_field() !!}
                 <label for="user__name">Your name: </label>
-                <input type="text" name="user__name" id='user__name' class="basket__form" value="" required>
+                <input type="text" name="name" id='user__name' class="basket__form" value="">
+                @if($errors->has('name'))
+                    <strong class="red">{{$errors->first('name')}}</strong>
+                @endif
                 <label for="user__name">Your phone: </label>
-                <input type="text" name="user__phone" id='user__phone' class="basket__form" value="" required>
+                <input type="text" name="phone" id='user__phone' class="basket__form" value="">
+                @if($errors->has('phone'))
+                    <strong class="red">{{$errors->first('name')}}</strong>
+                @endif
                 <label for="user__name">Your address: </label>
-                <input type="text" name="user__address" id='user__address' class="basket__form" value="" required>
+                <input type="text" name="address" id='user__address' class="basket__form" value="">
+                @if($errors->has('name'))
+                    <strong class="red">{{$errors->first('address')}}</strong>
+                @endif
                 <label for="user__name">Your comment: </label>
-                <textarea rows="10" cols="70" name="user__comment" id='user__comment' class="basket__form" value=""></textarea>
+                <textarea rows="10" cols="70" name="comment" id='user__comment' class="basket__form" value=""></textarea>
                 <input type="submit" name="sub__basket" class='sub__form' value="send">
             </form>
         </div>

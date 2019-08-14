@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\OrderRequest;
-
+use Auth;
 use App\Order;
 
 class OrderController extends Controller
@@ -19,7 +19,7 @@ class OrderController extends Controller
         $obj -> body = $_COOKIE['basket'];
         $obj -> ip = $_SERVER['REMOTE_ADDR'];
         $obj-> status = 'new';
-        $obj-> user_id = Auth::user()->id;
+        $obj-> user_id = Auth::guest() ? 0 : Auth::user()->id;
         $obj -> save();
         setcookie('basket','', time()-1, '/');
         return redirect("thankyoupage");

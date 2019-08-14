@@ -11,12 +11,9 @@
             <div class='filter__text'></div>
             <div class='filter'>
                 <ul class='filter__items'>
-                    <li><input type="checkbox" name="hp" id='hp' value=''><label for="hp">HP  </label></li>
-                    <li><input type="checkbox" name="dell" id='hp' value=''><label for="dell">DELL  </label></li>
-                    <li><input type="checkbox" name="apple" id='hp' value=''><label for="apple">APPLE  </label></li>
-                    <li><input type="checkbox" name="asus" id='hp' value=''><label for="asus">ASUS  </label></li>
-                    <li><input type="checkbox" name="sumsumg" id='hp' value=''><label for="sumsumg">SUMSUMG  </label></li>
-                    <li><input type="checkbox" name="toshiba" id='hp' value=''><label for="toshiba">TOSHIBA  </label></li>
+                    @foreach($brands  as $br)
+                        <li><input type="checkbox" name="{{$br-> brand -> name}}" id='{{$br-> brand -> name}}' value=''><label for="{{$br -> brand -> name}}">{{$br-> brand -> name}}  </label></li>
+                    @endforeach
                 </ul>
             </div>
             <div class="btn_filter">

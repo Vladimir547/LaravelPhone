@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 29 2019 г., 21:46
+-- Время создания: Авг 14 2019 г., 21:13
 -- Версия сервера: 5.7.20
 -- Версия PHP: 7.2.0
 
@@ -1131,6 +1131,60 @@ USE `laravel_project`;
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `Brands`
+--
+
+CREATE TABLE `Brands` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `discription` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `Brands`
+--
+
+INSERT INTO `Brands` (`id`, `name`, `discription`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'HP', NULL, NULL, NULL, NULL),
+(2, 'DELL', NULL, NULL, NULL, NULL),
+(3, 'APPLE', NULL, NULL, NULL, NULL),
+(4, 'ASUS', NULL, NULL, NULL, NULL),
+(5, 'SUMSUMG', NULL, NULL, NULL, NULL),
+(6, 'TOSHIBA', NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `brand_categories`
+--
+
+CREATE TABLE `brand_categories` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `brand_id` int(11) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `brand_categories`
+--
+
+INSERT INTO `brand_categories` (`id`, `brand_id`, `category_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 1, NULL, NULL, NULL),
+(2, 2, 2, NULL, NULL, NULL),
+(3, 3, 3, NULL, NULL, NULL),
+(4, 4, 4, NULL, NULL, NULL),
+(5, 5, 5, NULL, NULL, NULL),
+(6, 6, 6, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `categories`
 --
 
@@ -1141,20 +1195,21 @@ CREATE TABLE `categories` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `brand_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `categories`
 --
 
-INSERT INTO `categories` (`id`, `parent_id`, `order`, `name`, `slug`, `created_at`, `updated_at`) VALUES
-(1, NULL, 1, 'smart phone', 'smart_phone', '2019-07-26 13:56:52', '2019-07-29 15:19:40'),
-(2, NULL, 1, 'desktop', 'desktop', '2019-07-26 13:56:52', '2019-07-29 15:19:51'),
-(3, NULL, 1, 'laptop', 'laptop', '2019-07-29 15:20:20', '2019-07-29 15:20:20'),
-(4, NULL, 1, 'accessories', 'accessories', '2019-07-29 15:20:52', '2019-07-29 15:20:52'),
-(5, NULL, 1, 'networking', 'networking', '2019-07-29 15:21:07', '2019-07-29 15:21:07'),
-(6, NULL, 1, 'software', 'software', '2019-07-29 15:21:29', '2019-07-29 15:21:29');
+INSERT INTO `categories` (`id`, `parent_id`, `order`, `name`, `slug`, `created_at`, `updated_at`, `brand_id`) VALUES
+(1, NULL, 1, 'smart phone', 'smart_phone', '2019-07-26 13:56:52', '2019-07-29 15:19:40', NULL),
+(2, NULL, 1, 'desktop', 'desktop', '2019-07-26 13:56:52', '2019-07-29 15:19:51', NULL),
+(3, NULL, 1, 'laptop', 'laptop', '2019-07-29 15:20:20', '2019-07-29 15:20:20', NULL),
+(4, NULL, 1, 'accessories', 'accessories', '2019-07-29 15:20:52', '2019-07-29 15:20:52', NULL),
+(5, NULL, 1, 'networking', 'networking', '2019-07-29 15:21:07', '2019-07-29 15:21:07', NULL),
+(6, NULL, 1, 'software', 'software', '2019-07-29 15:21:29', '2019-07-29 15:21:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -1239,21 +1294,28 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (54, 6, 'updated_at', 'timestamp', 'Updated At', 1, 0, 0, 0, 0, 0, NULL, 11),
 (55, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, NULL, 12),
 (56, 10, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(57, 10, 'name', 'text', 'Name', 0, 1, 1, 1, 1, 1, '{}', 2),
-(58, 10, 'description', 'text', 'Description', 0, 1, 1, 1, 1, 1, '{}', 3),
-(59, 10, 'price', 'text', 'Price', 0, 1, 1, 1, 1, 1, '{}', 4),
-(60, 10, 'stars', 'text', 'Stars', 0, 1, 1, 1, 1, 1, '{}', 5),
+(57, 10, 'Name', 'text', 'Name', 0, 1, 1, 1, 1, 1, '{}', 2),
+(58, 10, 'Description', 'text', 'Description', 0, 1, 1, 1, 1, 1, '{}', 3),
+(59, 10, 'Price', 'text', 'Price', 0, 1, 1, 1, 1, 1, '{}', 4),
+(60, 10, 'Stars', 'text', 'Stars', 0, 1, 1, 1, 1, 1, '{}', 5),
 (61, 10, 'category_id', 'text', 'Category Id', 0, 1, 1, 1, 1, 1, '{}', 6),
-(62, 10, 'user_id', 'text', 'User Id', 0, 1, 1, 1, 1, 1, '1', 8),
-(63, 10, 'img', 'text', 'Img', 0, 1, 1, 1, 1, 1, '{}', 9),
-(64, 10, 'status', 'text', 'Status', 0, 1, 1, 1, 1, 1, '{}', 10),
-(65, 10, 'product_code', 'text', 'Product Code', 0, 1, 1, 1, 1, 1, '{}', 11),
-(66, 10, 'discount', 'text', 'Discount', 0, 1, 1, 1, 1, 1, '{}', 12),
-(67, 10, 'url', 'text', 'Url', 0, 1, 1, 1, 1, 1, '{}', 13),
-(68, 10, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 14),
-(69, 10, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 15),
-(70, 10, 'deleted_at', 'timestamp', 'Deleted At', 0, 1, 1, 1, 1, 1, '{}', 16),
-(71, 10, 'product_belongsto_category_relationship', 'relationship', 'categories', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Category\",\"table\":\"categories\",\"type\":\"belongsTo\",\"column\":\"category_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 7);
+(62, 10, 'user_id', 'text', 'User Id', 0, 1, 1, 1, 1, 1, '1', 9),
+(63, 10, 'Img', 'text', 'Img', 0, 1, 1, 1, 1, 1, '{}', 10),
+(64, 10, 'status', 'text', 'Status', 0, 1, 1, 1, 1, 1, '{}', 11),
+(65, 10, 'product_code', 'text', 'Product Code', 0, 1, 1, 1, 1, 1, '{}', 12),
+(66, 10, 'discount', 'text', 'Discount', 0, 1, 1, 1, 1, 1, '{}', 13),
+(67, 10, 'url', 'text', 'Url', 0, 1, 1, 1, 1, 1, '{}', 14),
+(68, 10, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 15),
+(69, 10, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 16),
+(70, 10, 'deleted_at', 'timestamp', 'Deleted At', 0, 1, 1, 1, 1, 1, '{}', 17),
+(71, 10, 'product_belongsto_category_relationship', 'relationship', 'categories', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Category\",\"table\":\"categories\",\"type\":\"belongsTo\",\"column\":\"category_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 7),
+(72, 13, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(73, 13, 'name', 'text', 'Name', 0, 1, 1, 1, 1, 1, '{}', 2),
+(74, 13, 'category_id', 'text', 'Category Id', 0, 1, 1, 1, 1, 1, '{}', 3),
+(75, 13, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
+(76, 13, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
+(77, 13, 'deleted_at', 'timestamp', 'Deleted At', 0, 1, 1, 1, 1, 1, '{}', 6),
+(78, 10, 'brand_id', 'text', 'Brand Id', 0, 1, 1, 1, 1, 1, '{}', 8);
 
 -- --------------------------------------------------------
 
@@ -1290,7 +1352,8 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2019-07-26 13:56:52', '2019-07-26 13:56:52'),
 (5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2019-07-26 13:56:52', '2019-07-26 13:56:52'),
 (6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2019-07-26 13:56:52', '2019-07-26 13:56:52'),
-(10, 'products', 'products', 'Product', 'Products', NULL, 'App\\Product', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-29 15:13:02', '2019-07-29 15:44:20');
+(10, 'products', 'products', 'Product', 'Products', NULL, 'App\\Product', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-29 15:13:02', '2019-08-05 15:14:50'),
+(13, 'Brands', 'brands', 'Brand', 'Brands', NULL, 'App\\Brand', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2019-08-05 14:53:31', '2019-08-05 14:53:31');
 
 -- --------------------------------------------------------
 
@@ -1357,7 +1420,8 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (14, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 5, '2019-07-26 13:56:52', '2019-07-26 15:12:20', 'voyager.hooks', NULL),
 (15, 3, 'Admin', '/admin', '_self', NULL, '#000000', NULL, 10, '2019-07-26 15:19:53', '2019-07-26 15:19:53', NULL, ''),
 (16, 3, 'parsing', '/parse', '_self', NULL, '#000000', NULL, 11, '2019-07-26 15:20:36', '2019-07-26 15:20:36', NULL, ''),
-(17, 1, 'Products', '', '_self', NULL, NULL, NULL, 12, '2019-07-29 15:13:03', '2019-07-29 15:13:03', 'voyager.products.index', NULL);
+(17, 1, 'Products', '', '_self', NULL, NULL, NULL, 12, '2019-07-29 15:13:03', '2019-07-29 15:13:03', 'voyager.products.index', NULL),
+(18, 1, 'Brands', '', '_self', NULL, NULL, NULL, 13, '2019-08-05 14:53:31', '2019-08-05 14:53:31', 'voyager.brands.index', NULL);
 
 -- --------------------------------------------------------
 
@@ -1401,7 +1465,37 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (23, '2016_01_01_000000_create_pages_table', 3),
 (24, '2016_01_01_000000_create_posts_table', 3),
 (25, '2016_02_15_204651_create_categories_table', 3),
-(26, '2017_04_11_000000_alter_post_nullable_fields_table', 3);
+(26, '2017_04_11_000000_alter_post_nullable_fields_table', 3),
+(27, '2019_08_07_164911_create_orders_table', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `orders`
+--
+
+INSERT INTO `orders` (`id`, `name`, `phone`, `address`, `comment`, `body`, `ip`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'i', '2223222', 'russianov 32', 'yes', '6:1:10299,', '127.0.0.1', 'new', 1, '2019-08-12 14:28:01', '2019-08-12 14:28:01'),
+(2, 'i', '2223222', 'russianov 32', 'yes', '6:1:10299,', '127.0.0.1', 'new', 1, '2019-08-12 14:28:34', '2019-08-12 14:28:34'),
+(3, 'vova', '1234567', 'russ 31', 'fer', '5:1:10299,4:1:10299,', '127.0.0.1', 'new', 1, '2019-08-12 14:41:17', '2019-08-12 14:41:17');
 
 -- --------------------------------------------------------
 
@@ -1507,7 +1601,12 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (43, 'read_products', 'products', '2019-07-29 15:13:02', '2019-07-29 15:13:02'),
 (44, 'edit_products', 'products', '2019-07-29 15:13:02', '2019-07-29 15:13:02'),
 (45, 'add_products', 'products', '2019-07-29 15:13:02', '2019-07-29 15:13:02'),
-(46, 'delete_products', 'products', '2019-07-29 15:13:02', '2019-07-29 15:13:02');
+(46, 'delete_products', 'products', '2019-07-29 15:13:02', '2019-07-29 15:13:02'),
+(47, 'browse_Brands', 'Brands', '2019-08-05 14:53:31', '2019-08-05 14:53:31'),
+(48, 'read_Brands', 'Brands', '2019-08-05 14:53:31', '2019-08-05 14:53:31'),
+(49, 'edit_Brands', 'Brands', '2019-08-05 14:53:31', '2019-08-05 14:53:31'),
+(50, 'add_Brands', 'Brands', '2019-08-05 14:53:31', '2019-08-05 14:53:31'),
+(51, 'delete_Brands', 'Brands', '2019-08-05 14:53:31', '2019-08-05 14:53:31');
 
 -- --------------------------------------------------------
 
@@ -1569,7 +1668,12 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (43, 1),
 (44, 1),
 (45, 1),
-(46, 1);
+(46, 1),
+(47, 1),
+(48, 1),
+(49, 1),
+(50, 1),
+(51, 1);
 
 -- --------------------------------------------------------
 
@@ -1614,9 +1718,9 @@ INSERT INTO `posts` (`id`, `author_id`, `category_id`, `title`, `seo_title`, `ex
 CREATE TABLE `products` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `Description` text COLLATE utf8mb4_unicode_ci,
   `price` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `stars` int(11) DEFAULT '5',
+  `Stars` int(11) DEFAULT '5',
   `category_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1626,8 +1730,21 @@ CREATE TABLE `products` (
   `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `brand_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `Description`, `price`, `Stars`, `category_id`, `user_id`, `img`, `status`, `product_code`, `discount`, `url`, `created_at`, `updated_at`, `deleted_at`, `brand_id`) VALUES
+(1, 'SMART PHONE PRIMO V1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '10299', 5, 1, NULL, 'img/phone1.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'SMART PHONE PRIMO V1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '10299', 5, 2, NULL, 'img/phone2.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'SMART PHONE PRIMO V1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '10299', 5, 3, NULL, 'img/phone3.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'SMART PHONE PRIMO V1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '10299', 5, 4, NULL, 'img/phone4.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'SMART PHONE PRIMO V1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '10299', 5, 5, NULL, 'img/phone6.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 'SMART PHONE PRIMO V1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '10299', 5, 6, NULL, 'img/phone6.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1780,6 +1897,18 @@ CREATE TABLE `user_roles` (
 --
 
 --
+-- Индексы таблицы `Brands`
+--
+ALTER TABLE `Brands`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `brand_categories`
+--
+ALTER TABLE `brand_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `categories`
 --
 ALTER TABLE `categories`
@@ -1820,6 +1949,12 @@ ALTER TABLE `menu_items`
 -- Индексы таблицы `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `orders`
+--
+ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1905,6 +2040,18 @@ ALTER TABLE `user_roles`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `Brands`
+--
+ALTER TABLE `Brands`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT для таблицы `brand_categories`
+--
+ALTER TABLE `brand_categories`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
@@ -1914,13 +2061,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT для таблицы `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT для таблицы `menus`
@@ -1932,13 +2079,19 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT для таблицы `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT для таблицы `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `pages`
@@ -1950,7 +2103,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT для таблицы `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT для таблицы `posts`
@@ -1962,7 +2115,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `roles`

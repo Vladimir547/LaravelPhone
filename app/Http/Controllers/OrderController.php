@@ -19,9 +19,12 @@ class OrderController extends Controller
         $obj -> body = $_COOKIE['basket'];
         $obj -> ip = $_SERVER['REMOTE_ADDR'];
         $obj-> status = 'new';
-        $obj-> user_id = '1';
+        $obj-> user_id = Auth::user()->id;
         $obj -> save();
         setcookie('basket','', time()-1, '/');
         return redirect("thankyoupage");
+    }
+    public function getAll(){
+        $orders = Order::where('user_id', Auth::user()->id)->get;
     }
 }

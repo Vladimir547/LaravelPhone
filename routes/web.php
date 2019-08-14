@@ -13,6 +13,8 @@
 
 Route::post('/order', 'OrderController@postIndex');
 
+
+
 Route::get('/', 'BaseController@getindex');
 
 Auth::routes();

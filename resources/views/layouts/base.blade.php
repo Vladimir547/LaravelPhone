@@ -126,10 +126,10 @@
                         <ul class="menu__item">
                             <li><a href="{{asset('/posts/')}}">Catalog</a></li>
                             @foreach($cat_objs as $obj)
-                            @if($obj)
-                                <li><a href="{{asset('/posts/'.$obj->id)}}">{{$obj->name}}</a></li>
+                                @if($obj)
+                                    <li><a href="{{asset('/posts/'.$obj->id)}}">{{$obj->name}}</a></li>
                                 @else
-                                <p>problem</p>
+                                    <p>problem</p>
                                 @endif
                             @endforeach
 

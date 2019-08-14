@@ -4,12 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Brand_category extends Model
 {
     public function categories(){
-        return belongsTo('App\Category');
+        return $this -> belongsTo('App\Category', 'category_id');
     }
     public function brand(){
-        return belongsTo('App\Brand');
+        return $this -> belongsTo('App\Brand', 'brand_id');
     }
 }

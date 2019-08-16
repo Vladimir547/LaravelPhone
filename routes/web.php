@@ -19,6 +19,8 @@ Route::get('/', 'BaseController@getindex');
 
 Auth::routes();
 
+Route::get('archive', 'OrderController@getArchive')->middleware('auth');
+
 Route::get('basket/delete/{id}', 'BasketController@getDelete');
 
 Route::get('/posts', 'PostController@getPosts');

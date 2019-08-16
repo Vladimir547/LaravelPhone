@@ -11,6 +11,13 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Laravel_project</title>
 </head>
 
@@ -79,11 +86,19 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <div class="tools">
-                        <div class='register__items'>
-                            <a href="{{asset('login.php')}}">log in</a>
-                            <p>or</p>
-                            <a href="#">create account</a>
-                        </div>
+                        @if (Route::has('login'))
+                            <div class="top-right links">
+                                @auth
+                                <a href="{{ url('/index') }}">Home</a>
+                                @else
+                                    <a href="{{ route('login') }}">Login</a>
+
+                                    @if (Route::has('register'))
+                                        <a href="{{ route('register') }}">Register</a>
+                                    @endif
+                                    @endauth
+                            </div>
+                        @endif
                         <div class='buy__tools'>
                             <div class='buy__items'>
                                 <a href="#"><i class="far fa-edit"></i></a>
@@ -106,7 +121,8 @@
                                 </tr>
                                 <tr>
                                     <td><a style="display: none;" id="clearBasket" href="#">Очистить</a></td>
-                                    <td><a style="display: none;" id="checkOut" href="{{asset('basket')}}">Оформить</a></td>
+                                    <td><a style="display: none;" id="checkOut" href="{{asset('basket')}}">Оформить</a>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -148,6 +164,66 @@
             </div>
         </div>
     </div>
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <img src="{{asset('img/logo1.png')}}">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="{{ __('Toggle navigation') }}">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav mr-auto">
+
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                        @endguest
+                </ul>
+            </div>
+        </div>
+    </nav>
 </header>
 @yield("content")
 <footer class='footer'>
@@ -255,27 +331,29 @@
     </div>
 </footer>
 <script>
-    window.onload = function(){
-        document.querySelector('.show__menu').onclick =showM;
-        document.querySelector('.hide__menu').onclick =hideM;
-        var overflowMenu= document.createElement('div');
-        document.onkeydown = function(event){
-            if(event.code =='Escape') hideM();
+    window.onload = function () {
+        document.querySelector('.show__menu').onclick = showM;
+        document.querySelector('.hide__menu').onclick = hideM;
+        var overflowMenu = document.createElement('div');
+        document.onkeydown = function (event) {
+            if (event.code == 'Escape') hideM();
         }
-        function showM(e){
-            document.querySelector('.hide__menu').style.display= 'block';
-            document.querySelector('.menu__item').style.display= 'block';
-            overflowMenu.className= "overflow__menu";
+        function showM(e) {
+            document.querySelector('.hide__menu').style.display = 'block';
+            document.querySelector('.menu__item').style.display = 'block';
+            overflowMenu.className = "overflow__menu";
             document.body.appendChild(overflowMenu);
         }
-        function hideM(e){
+
+        function hideM(e) {
             overflowMenu.remove();
-            document.querySelector('.menu__item').style.display= 'none';
-            document.querySelector('.hide__menu').style.display= 'none';
+            document.querySelector('.menu__item').style.display = 'none';
+            document.querySelector('.hide__menu').style.display = 'none';
         }
-        overflowMenu.onclick = function(){
-            document.querySelector('.menu__item').style.display= 'none';
-            document.querySelector('.hide__menu').style.display= 'none';
+
+        overflowMenu.onclick = function () {
+            document.querySelector('.menu__item').style.display = 'none';
+            document.querySelector('.hide__menu').style.display = 'none';
             overflowMenu.remove();
         }
     }

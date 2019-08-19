@@ -247,11 +247,11 @@
                     <div class='product__wrapper'>
                         <div class="product__item">
                             <div class='product__img'>
-                                <img src="{{$one->img}}">
+                                <a href="#"><img src="{{$one->img}}"></a>
                             </div>
                             <div class='product__tools'>
                                 <div class='product__headline'>
-                                    <h4>{{$one->name}}</h4>
+                                    <h4><a href="#">{{$one->name}}</a></h4>
                                 </div>
                                 <div class='product__price'>
                                     <p>{!!$one->price!!}</p>

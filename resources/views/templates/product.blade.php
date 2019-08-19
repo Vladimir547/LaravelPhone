@@ -2,11 +2,11 @@
     <div class='product__wrapper'>
         <div class="product__item">
             <div class='product__img'>
-                <img src="{{asset($one->img)}}">
+                <a href="{{asset('/item/'.$one->id)}}"><img src="{{asset($one->img)}}"></a>
             </div>
             <div class='product__tools'>
                 <div class='product__headline'>
-                    <h4>{{$one->name}}</h4>
+                    <h4><a href="{{asset('/item/'.$one->id)}}">{{$one->name}}</a></h4>
                 </div>
                 <div class='product__price'>
                     <p>${!!$one->price!!}</p>
